@@ -1,16 +1,2144 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <title>Rakesh Kumar | iOS Developer</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rakesh Kumar — Senior iOS Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #0a0b0e;
+        --ink2: #111318;
+        --glass: rgba(255, 255, 255, 0.035);
+        --rim: rgba(255, 255, 255, 0.07);
+        --rim2: rgba(255, 255, 255, 0.13);
+        --gold: #e8a040;
+        --gold2: #c97b20;
+        --gold-dim: rgba(232, 160, 64, 0.1);
+        --teal: #3ecfb2;
+        --snow: #f2f1ee;
+        --fog: #7c8390;
+        --dim: #2e323c;
+        --r: 14px;
+        --r-lg: 22px;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Syne", sans-serif;
+        background: var(--ink);
+        color: var(--snow);
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.03'/%3E%3C/svg%3E");
+        background-size: 180px;
+      }
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--ink);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--dim);
+        border-radius: 3px;
+      }
+      .wrap {
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 0 32px;
+      }
+      .label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "Geist Mono", monospace;
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 18px;
+      }
+      .label::before {
+        content: "";
+        display: block;
+        width: 20px;
+        height: 1px;
+        background: var(--gold);
+      }
+      .serif {
+        font-family: "Instrument Serif", serif;
+        font-style: italic;
+        color: var(--gold);
+      }
+      h2.heading {
+        font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+        font-weight: 700;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+      .muted {
+        color: var(--fog);
+        font-size: 0.95rem;
+        line-height: 1.75;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        padding: 16px 0;
+        background: rgba(10, 11, 14, 0.85);
+        backdrop-filter: blur(24px) saturate(1.4);
+        -webkit-backdrop-filter: blur(24px);
+        border-bottom: 1px solid var(--rim);
+      }
+      nav .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .n-logo {
+        font-family: "Geist Mono", monospace;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--snow);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .n-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--gold);
+        display: inline-block;
+      }
+      .n-links {
+        display: flex;
+        gap: 28px;
+        list-style: none;
+      }
+      .n-links a {
+        color: var(--fog);
+        text-decoration: none;
+        font-size: 0.82rem;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        transition: color 0.2s;
+      }
+      .n-links a:hover {
+        color: var(--snow);
+      }
+      .n-cta {
+        background: var(--gold);
+        color: var(--ink);
+        border-radius: 100px;
+        padding: 8px 20px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-decoration: none;
+        letter-spacing: 0.04em;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .n-cta:hover {
+        background: #f0b055;
+        transform: translateY(-1px);
+      }
+      #mnav {
+        display: none;
+      }
+      .n-burger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+      }
+      .n-burger span {
+        display: block;
+        width: 22px;
+        height: 1.5px;
+        background: var(--snow);
+        border-radius: 2px;
+        transition: 0.3s;
+      }
+      #mnav:checked ~ .wrap .n-burger span:nth-child(1) {
+        transform: rotate(45deg) translate(4.5px, 4.5px);
+      }
+      #mnav:checked ~ .wrap .n-burger span:nth-child(2) {
+        opacity: 0;
+      }
+      #mnav:checked ~ .wrap .n-burger span:nth-child(3) {
+        transform: rotate(-45deg) translate(4.5px, -4.5px);
+      }
+      #mnav:checked ~ .wrap .n-links {
+        display: flex;
+      }
+
+      /* HERO */
+      #hero {
+        min-height: 100svh;
+        padding: 110px 0 70px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+      #hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+          linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+          );
+        background-size: 60px 60px;
+        mask-image: radial-gradient(
+          ellipse 80% 80% at 50% 50%,
+          black 20%,
+          transparent 80%
+        );
+      }
+      .ho {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(110px);
+        pointer-events: none;
+      }
+      .ho1 {
+        width: 620px;
+        height: 620px;
+        top: -200px;
+        right: -80px;
+        background: radial-gradient(
+          circle,
+          rgba(232, 160, 64, 0.13),
+          transparent 65%
+        );
+      }
+      .ho2 {
+        width: 500px;
+        height: 500px;
+        bottom: -100px;
+        left: -100px;
+        background: radial-gradient(
+          circle,
+          rgba(62, 207, 178, 0.09),
+          transparent 65%
+        );
+      }
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1fr 420px;
+        gap: 60px;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(232, 160, 64, 0.1);
+        border: 1px solid rgba(232, 160, 64, 0.25);
+        border-radius: 100px;
+        padding: 6px 16px;
+        font-family: "Geist Mono", monospace;
+        font-size: 0.7rem;
+        color: var(--gold);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 28px;
+      }
+      .avail-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #4ade80;
+        box-shadow: 0 0 8px #4ade80;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.4;
+        }
+      }
+      .hero-name {
+        font-size: clamp(3.8rem, 7.5vw, 6.2rem);
+        font-weight: 800;
+        line-height: 0.93;
+        letter-spacing: -0.04em;
+        margin-bottom: 6px;
+      }
+      .hero-name .last {
+        color: var(--gold);
+        display: block;
+      }
+      .hero-titles {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin: 22px 0;
+      }
+      .htag {
+        font-family: "Geist Mono", monospace;
+        font-size: 0.7rem;
+        font-weight: 400;
+        color: var(--fog);
+        border: 1px solid var(--rim2);
+        border-radius: 6px;
+        padding: 5px 12px;
+        letter-spacing: 0.05em;
+      }
+      .htag.hi {
+        color: var(--teal);
+        border-color: rgba(62, 207, 178, 0.25);
+        background: rgba(62, 207, 178, 0.06);
+      }
+      .hero-tagline {
+        font-size: clamp(0.93rem, 1.4vw, 1.05rem);
+        color: rgba(242, 241, 238, 0.55);
+        max-width: 490px;
+        line-height: 1.78;
+        margin-bottom: 36px;
+      }
+      .hero-contact {
+        font-family: "Geist Mono", monospace;
+        font-size: 0.7rem;
+        color: var(--fog);
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin-bottom: 34px;
+      }
+      .hero-contact a {
+        color: var(--fog);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .hero-contact a:hover {
+        color: var(--gold);
+      }
+      .hbtns {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .btn-gold {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--gold);
+        color: var(--ink);
+        border-radius: 100px;
+        padding: 13px 28px;
+        font-size: 0.88rem;
+        font-weight: 700;
+        text-decoration: none;
+        letter-spacing: 0.03em;
+        box-shadow: 0 8px 30px rgba(232, 160, 64, 0.3);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .btn-gold:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 40px rgba(232, 160, 64, 0.45);
+      }
+      .btn-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--glass);
+        border: 1px solid var(--rim2);
+        color: var(--snow);
+        border-radius: 100px;
+        padding: 13px 28px;
+        font-size: 0.88rem;
+        font-weight: 600;
+        text-decoration: none;
+        backdrop-filter: blur(12px);
+        transition:
+          transform 0.2s,
+          background 0.2s;
+      }
+      .btn-outline:hover {
+        transform: translateY(-3px);
+        background: rgba(255, 255, 255, 0.07);
+      }
+
+      /* PHOTO CARD */
+      .photo-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .photo-frame {
+        width: 300px;
+        height: 370px;
+        border-radius: 28px;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid var(--rim2);
+        box-shadow:
+          0 40px 80px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(232, 160, 64, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      }
+      .photo-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
+      }
+      .photo-placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(160deg, #1c2030, #111520, #0a0d14);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+      }
+      .pp-initials {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--gold), var(--gold2));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: var(--ink);
+        box-shadow: 0 12px 40px rgba(232, 160, 64, 0.35);
+      }
+      .pp-hint {
+        font-size: 0.7rem;
+        color: var(--dim);
+        text-align: center;
+        max-width: 160px;
+        line-height: 1.5;
+      }
+      .photo-frame::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(
+          135deg,
+          rgba(232, 160, 64, 0.25),
+          transparent
+        );
+        pointer-events: none;
+        z-index: 2;
+      }
+      .photo-frame::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(
+          315deg,
+          rgba(62, 207, 178, 0.2),
+          transparent
+        );
+        pointer-events: none;
+        z-index: 2;
+      }
+      .side-chips {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 16px;
+        width: 300px;
+      }
+      .sc {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: var(--glass);
+        border: 1px solid var(--rim2);
+        border-radius: var(--r);
+        padding: 10px 14px;
+        backdrop-filter: blur(12px);
+      }
+      .sc-icon {
+        font-size: 1rem;
+      }
+      .sc-val {
+        font-weight: 700;
+        font-size: 0.75rem;
+        color: var(--snow);
+      }
+      .sc-sub {
+        color: var(--fog);
+        font-size: 0.67rem;
+        margin-top: 1px;
+      }
+
+      /* ABOUT */
+      #about {
+        padding: 120px 0;
+      }
+      .about-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: start;
+      }
+      .about-text p {
+        color: rgba(242, 241, 238, 0.67);
+        font-size: 0.98rem;
+        line-height: 1.85;
+        margin-top: 18px;
+      }
+      .about-text p + p {
+        margin-top: 12px;
+      }
+      .about-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 30px;
+      }
+      .about-pill {
+        background: var(--glass);
+        border: 1px solid var(--rim2);
+        border-radius: var(--r);
+        padding: 11px 16px;
+        font-size: 0.79rem;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+      }
+      .about-pill:hover {
+        border-color: rgba(232, 160, 64, 0.3);
+        transform: translateY(-2px);
+      }
+      .ap-n {
+        font-weight: 700;
+        font-size: 0.8rem;
+      }
+      .ap-s {
+        color: var(--fog);
+        font-size: 0.68rem;
+        margin-top: 1px;
+      }
+      .about-panel {
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.04),
+          rgba(255, 255, 255, 0.01)
+        );
+        border: 1px solid var(--rim);
+        border-radius: var(--r-lg);
+        padding: 36px;
+        position: sticky;
+        top: 100px;
+      }
+      .ap-header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 28px;
+        padding-bottom: 22px;
+        border-bottom: 1px solid var(--rim);
+      }
+      .ap-avatar {
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--gold), var(--gold2));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--ink);
+        flex-shrink: 0;
+      }
+      .ap-hname {
+        font-size: 0.95rem;
+        font-weight: 700;
+      }
+      .ap-htitle {
+        font-size: 0.72rem;
+        color: var(--fog);
+        margin-top: 2px;
+      }
+      .ap-loc {
+        font-family: "Geist Mono", monospace;
+        font-size: 0.66rem;
+        color: var(--fog);
+        margin-top: 3px;
+      }
+      .ap-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 22px;
+      }
+      .ap-stat {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--rim);
+        border-radius: var(--r);
+        padding: 18px;
+        text-align: center;
+      }
+      .ap-stat-n {
+        font-size: 1.8rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--gold), #f5c070);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .ap-stat-l {
+        font-size: 0.67rem;
+        color: var(--fog);
+        margin-top: 2px;
+      }
+      .ap-links {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .ap-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border: 1px solid var(--rim);
+        border-radius: var(--r);
+        text-decoration: none;
+        color: var(--snow);
+        font-size: 0.78rem;
+        font-weight: 500;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+      .ap-link:hover {
+        border-color: rgba(232, 160, 64, 0.35);
+        background: var(--gold-dim);
+      }
+      .ap-link-icon {
+        font-size: 0.95rem;
+      }
+      .apl-info {
+        display: flex;
+        flex-direction: column;
+      }
+      .apl-sub {
+        font-size: 0.66rem;
+        color: var(--fog);
+      }
+      .apl-go {
+        margin-left: auto;
+        color: var(--fog);
+        font-size: 0.72rem;
+      }
+
+      /* SKILLS */
+      #skills {
+        padding: 120px 0;
+        background: linear-gradient(
+          180deg,
+          transparent,
+          var(--ink2) 30%,
+          var(--ink2) 70%,
+          transparent
+        );
+      }
+      .skills-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 52px;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+      .skills-cats {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+      .scat-title {
+        font-family: "Geist Mono", monospace;
+        font-size: 0.66rem;
+        font-weight: 500;
+        color: var(--fog);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .scat-title::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--rim);
+      }
+      .skill-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+      }
+      .sp {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--glass);
+        border: 1px solid var(--rim);
+        border-radius: var(--r);
+        padding: 9px 16px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        transition:
+          border-color 0.25s,
+          transform 0.25s,
+          background 0.25s;
+        cursor: default;
+      }
+      .sp:hover {
+        border-color: rgba(232, 160, 64, 0.35);
+        background: rgba(232, 160, 64, 0.05);
+        transform: translateY(-3px);
+      }
+      .sp.tl:hover {
+        border-color: rgba(62, 207, 178, 0.35);
+        background: rgba(62, 207, 178, 0.05);
+      }
+      .sp-i {
+        font-size: 0.95rem;
+      }
+
+      /* PROJECTS */
+      #projects {
+        padding: 120px 0;
+      }
+      .proj-head {
+        margin-bottom: 56px;
+      }
+      .proj-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+      .proj-card {
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.045),
+          rgba(255, 255, 255, 0.015)
+        );
+        border: 1px solid var(--rim);
+        border-radius: var(--r-lg);
+        overflow: hidden;
+        transition:
+          transform 0.3s,
+          border-color 0.3s,
+          box-shadow 0.3s;
+        display: flex;
+        flex-direction: column;
+      }
+      .proj-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(232, 160, 64, 0.25);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      }
+      .proj-card.feat {
+        grid-column: span 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .proj-thumb {
+        height: 220px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .proj-card.feat .proj-thumb {
+        height: 100%;
+        min-height: 260px;
+      }
+      .pt-s {
+        background: linear-gradient(145deg, #0d1f3c, #0a3060, #131040);
+      }
+      .pt-v {
+        background: linear-gradient(145deg, #0a2820, #063d2a, #0a2535);
+      }
+      .pt-b {
+        background: linear-gradient(145deg, #1f150a, #3d2206, #1a1030);
+      }
+      .pt-e {
+        background: linear-gradient(145deg, #1a1a2a, #0d1235, #1a0d1f);
+      }
+      .pt-t {
+        background: linear-gradient(145deg, #1a2010, #2a3d10, #102015);
+      }
+      .pt-w {
+        background: linear-gradient(145deg, #0a1530, #0d2550, #0a2030);
+      }
+      .te {
+        font-size: 3.8rem;
+        opacity: 0.5;
+      }
+      .pchip {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        background: rgba(10, 11, 14, 0.75);
+        border: 1px solid var(--rim2);
+        border-radius: 100px;
+        padding: 4px 12px;
+        font-family: "Geist Mono", monospace;
+        font-size: 0.63rem;
+        color: var(--gold);
+        backdrop-filter: blur(10px);
+        letter-spacing: 0.08em;
+      }
+      .plive {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        background: rgba(74, 222, 128, 0.12);
+        border: 1px solid rgba(74, 222, 128, 0.3);
+        border-radius: 100px;
+        padding: 4px 12px;
+        font-size: 0.63rem;
+        color: #4ade80;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .ld {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #4ade80;
+        animation: pulse 2s infinite;
+      }
+      .proj-body {
+        padding: 22px 26px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .proj-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 9px;
+      }
+      .proj-desc {
+        font-size: 0.81rem;
+        color: var(--fog);
+        line-height: 1.72;
+        flex: 1;
+      }
+      .proj-techs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 16px;
+      }
+      .tech {
+        font-family: "Geist Mono", monospace;
+        font-size: 0.63rem;
+        padding: 3px 8px;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--rim);
+        color: var(--fog);
+      }
+      .proj-foot {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 26px;
+        border-top: 1px solid var(--rim);
+        font-size: 0.73rem;
+        color: var(--fog);
+      }
+      .plink {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--gold);
+        text-decoration: none;
+        font-size: 0.76rem;
+        font-weight: 600;
+        transition: gap 0.2s;
+      }
+      .plink:hover {
+        gap: 10px;
+      }
+
+      /* EXPERIENCE */
+      #experience {
+        padding: 120px 0;
+        background: linear-gradient(
+          180deg,
+          transparent,
+          var(--ink2) 20%,
+          var(--ink2) 80%,
+          transparent
+        );
+      }
+      .exp-layout {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 60px;
+      }
+      .exp-sidebar {
+        position: sticky;
+        top: 100px;
+        height: fit-content;
+      }
+      .exp-sidebar h2 {
+        margin-bottom: 20px;
+      }
+      .domain-list {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+        margin-top: 28px;
+      }
+      .dom {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: var(--glass);
+        border: 1px solid var(--rim);
+        border-radius: var(--r);
+        padding: 11px 14px;
+        transition: border-color 0.2s;
+      }
+      .dom:hover {
+        border-color: rgba(232, 160, 64, 0.28);
+      }
+      .dom-e {
+        font-size: 1rem;
+      }
+      .dom-n {
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+      .dom-s {
+        font-size: 0.68rem;
+        color: var(--fog);
+      }
+      .tl {
+        display: flex;
+        flex-direction: column;
+      }
+      .tl-item {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0 22px;
+        padding-bottom: 40px;
+      }
+      .tl-item:last-child {
+        padding-bottom: 0;
+      }
+      .tl-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .tl-dw {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--ink2);
+        border: 1px solid var(--rim2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-size: 0.9rem;
+      }
+      .tl-line {
+        flex: 1;
+        width: 1px;
+        background: linear-gradient(
+          180deg,
+          var(--rim2),
+          var(--rim),
+          transparent
+        );
+        margin: 7px 0;
+      }
+      .tl-right {
+        padding-top: 5px;
+      }
+      .tl-period {
+        font-family: "Geist Mono", monospace;
+        font-size: 0.66rem;
+        color: var(--gold);
+        letter-spacing: 0.08em;
+        margin-bottom: 5px;
+      }
+      .tl-co {
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 2px;
+      }
+      .tl-role {
+        font-size: 0.78rem;
+        color: var(--gold);
+        margin-bottom: 5px;
+        font-weight: 600;
+      }
+      .tl-loc {
+        font-family: "Geist Mono", monospace;
+        font-size: 0.65rem;
+        color: var(--fog);
+        margin-bottom: 10px;
+      }
+      .tl-pts {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .tl-pts li {
+        font-size: 0.8rem;
+        color: rgba(242, 241, 238, 0.63);
+        line-height: 1.65;
+        padding-left: 14px;
+        position: relative;
+      }
+      .tl-pts li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 9px;
+        width: 5px;
+        height: 1px;
+        background: var(--gold);
+      }
+
+      /* CONTACT */
+      #contact {
+        padding: 120px 0;
+      }
+      .contact-shell {
+        max-width: 800px;
+        margin: 0 auto;
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.045),
+          rgba(255, 255, 255, 0.01)
+        );
+        border: 1px solid var(--rim2);
+        border-radius: 28px;
+        padding: 70px 56px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .contact-shell::before {
+        content: "";
+        position: absolute;
+        top: -120px;
+        right: -120px;
+        width: 340px;
+        height: 340px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(232, 160, 64, 0.1),
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .contact-shell::after {
+        content: "";
+        position: absolute;
+        bottom: -100px;
+        left: -100px;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(62, 207, 178, 0.07),
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .contact-shell h2 {
+        margin-bottom: 12px;
+      }
+      .contact-shell .muted {
+        max-width: 440px;
+        margin: 0 auto 44px;
+      }
+      .c-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-bottom: 40px;
+        position: relative;
+        z-index: 1;
+      }
+      .c-card {
+        background: var(--glass);
+        border: 1px solid var(--rim);
+        border-radius: var(--r);
+        padding: 22px 14px;
+        text-decoration: none;
+        color: var(--snow);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 7px;
+        transition:
+          transform 0.2s,
+          border-color 0.2s,
+          background 0.2s;
+      }
+      .c-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(232, 160, 64, 0.3);
+        background: var(--gold-dim);
+      }
+      .c-icon {
+        font-size: 1.5rem;
+      }
+      .c-lbl {
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--fog);
+      }
+      .c-val {
+        font-size: 0.75rem;
+        color: var(--snow);
+        font-weight: 500;
+        word-break: break-all;
+      }
+      .c-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--gold);
+        color: var(--ink);
+        border-radius: 100px;
+        padding: 15px 38px;
+        font-size: 0.97rem;
+        font-weight: 800;
+        text-decoration: none;
+        letter-spacing: 0.03em;
+        box-shadow: 0 10px 35px rgba(232, 160, 64, 0.33);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        position: relative;
+        z-index: 1;
+      }
+      .c-cta:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 45px rgba(232, 160, 64, 0.5);
+      }
+
+      /* FOOTER */
+      footer {
+        border-top: 1px solid var(--rim);
+        padding: 26px 0;
+        position: relative;
+        z-index: 1;
+      }
+      footer .wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+      .f-logo {
+        font-family: "Geist Mono", monospace;
+        font-size: 0.82rem;
+        color: var(--fog);
+      }
+      .f-logo b {
+        color: var(--gold);
+      }
+      .f-copy {
+        font-size: 0.72rem;
+        color: var(--dim);
+      }
+      .f-links {
+        display: flex;
+        gap: 18px;
+      }
+      .f-links a {
+        font-size: 0.72rem;
+        color: var(--dim);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .f-links a:hover {
+        color: var(--snow);
+      }
+
+      /* ANIMATIONS */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(26px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .hero-badge {
+        animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+      }
+      .hero-name {
+        animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+      }
+      .hero-titles {
+        animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+      }
+      .hero-tagline {
+        animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
+      }
+      .hero-contact {
+        animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.38s both;
+      }
+      .hbtns {
+        animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.44s both;
+      }
+      .photo-card {
+        animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 960px) {
+        .hero-inner {
+          grid-template-columns: 1fr;
+        }
+        .photo-card {
+          display: none;
+        }
+        .about-layout {
+          grid-template-columns: 1fr;
+        }
+        .about-panel {
+          position: static;
+        }
+        .proj-card.feat {
+          grid-column: span 1;
+          display: flex;
+          flex-direction: column;
+        }
+        .proj-card.feat .proj-thumb {
+          min-height: 220px;
+        }
+        .exp-layout {
+          grid-template-columns: 1fr;
+        }
+        .exp-sidebar {
+          position: static;
+        }
+        .c-cards {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 700px) {
+        .wrap {
+          padding: 0 20px;
+        }
+        .n-links {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: rgba(10, 11, 14, 0.97);
+          backdrop-filter: blur(20px);
+          border-top: 1px solid var(--rim);
+          padding: 20px 24px;
+          gap: 20px;
+        }
+        #mnav:checked ~ .wrap .n-links {
+          display: flex;
+        }
+        .n-burger {
+          display: flex;
+        }
+        .n-cta {
+          display: none;
+        }
+        .proj-grid {
+          grid-template-columns: 1fr;
+        }
+        .proj-card.feat {
+          grid-column: span 1;
+        }
+        .contact-shell {
+          padding: 40px 22px;
+        }
+        .c-cards {
+          grid-template-columns: 1fr 1fr;
+        }
+        footer .wrap {
+          flex-direction: column;
+          text-align: center;
+        }
+        .f-links {
+          justify-content: center;
+        }
+        .skills-head {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+      @media (max-width: 420px) {
+        .c-cards {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
   </head>
   <body>
-    <h1>Hi, I'm Rakesh 👋</h1>
-    <p>Senior iOS Developer with 9+ years experience</p>
+    <!-- NAV -->
+    <nav>
+      <input type="checkbox" id="mnav" />
+      <div class="wrap">
+        <a class="n-logo" href="#hero"
+          ><span class="n-dot"></span> rakesh.dev</a
+        >
+        <ul class="n-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a class="n-cta" href="mailto:rakeshiosdev28@gmail.com">Hire Me</a>
+        <label for="mnav" class="n-burger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </label>
+      </div>
+    </nav>
 
-    <h2>Projects</h2>
-    <ul>
-      <li>Fantasy Sports App</li>
-      <li>Chat App with WebRTC</li>
-    </ul>
+    <!-- HERO -->
+    <section id="hero">
+      <div class="ho ho1"></div>
+      <div class="ho ho2"></div>
+      <div class="wrap">
+        <div class="hero-inner">
+          <div>
+            <div class="hero-badge">
+              <span class="avail-dot"></span>Open to senior roles &amp;
+              contracts
+            </div>
+            <h1 class="hero-name">RAKESH<span class="last">KUMAR.</span></h1>
+            <div class="hero-titles">
+              <span class="htag hi">Senior iOS Engineer</span>
+              <span class="htag hi">React Native</span>
+              <span class="htag">9+ Years</span>
+              <span class="htag">Indore, India</span>
+            </div>
+            <p class="hero-tagline">
+              Architecting scalable, high-performance mobile applications for
+              enterprise, banking, VoIP, and consumer domains. Swift · SwiftUI ·
+              Clean Architecture · System Design.
+            </p>
+            <div class="hero-contact">
+              <a href="tel:+919006465603">+91-9006465603</a>
+              <a href="mailto:rakeshiosdev28@gmail.com"
+                >rakeshiosdev28@gmail.com</a
+              >
+              <a
+                href="https://github.com/rakeshiosdev"
+                target="_blank"
+                rel="noopener"
+                >github.com/rakeshiosdev</a
+              >
+            </div>
+            <div class="hbtns">
+              <a href="#projects" class="btn-gold">View Projects ↓</a>
+              <a href="#contact" class="btn-outline">Get in Touch</a>
+            </div>
+          </div>
+
+          <!-- PHOTO CARD -->
+          <div class="photo-card">
+            <div class="photo-frame">
+              <!--
+            ═══════════════════════════════════════
+            ADD YOUR PHOTO HERE
+            Replace the div below with:
+            <img src="photo.jpg" alt="Rakesh Kumar"/>
+            Upload photo.jpg next to index.html
+            ═══════════════════════════════════════
+          -->
+              <div class="photo-placeholder">
+                <div class="pp-initials">RK</div>
+                <p class="pp-hint">
+                  Upload your photo &amp; replace this block with &lt;img
+                  src="photo.jpg"/&gt;
+                </p>
+              </div>
+            </div>
+            <div class="side-chips">
+              <div class="sc">
+                <span class="sc-icon">🏢</span>
+                <div>
+                  <div class="sc-val">TCS · Globant · Diverse Lynx</div>
+                  <div class="sc-sub">Top-tier employers</div>
+                </div>
+              </div>
+              <div class="sc">
+                <span class="sc-icon">📱</span>
+                <div>
+                  <div class="sc-val">LA Clippers + 5 more apps</div>
+                  <div class="sc-sub">Live on App Store</div>
+                </div>
+              </div>
+              <div class="sc">
+                <span class="sc-icon">🎓</span>
+                <div>
+                  <div class="sc-val">MCA – AITR Indore, 2015</div>
+                  <div class="sc-sub">Master of Computer Applications</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="wrap">
+        <div class="about-layout">
+          <div class="about-text">
+            <div class="label">About Me</div>
+            <h2 class="heading">
+              Building apps that<br /><span class="serif">scale</span> &amp;
+              endure
+            </h2>
+            <p>
+              Senior iOS Engineer with 9+ years of experience architecting and
+              delivering scalable, high-performance mobile applications across
+              enterprise, banking, VoIP, and consumer domains. Expert in Swift,
+              SwiftUI, UIKit, and modular Clean Architecture.
+            </p>
+            <p>
+              Deep expertise in Swift Concurrency (async/await, Actors,
+              AsyncSequence), performance optimisation via Instruments, and
+              secure mobile development — OAuth 2.0, SSL Pinning, Keychain,
+              Biometric Authentication. Proven track record improving app
+              performance, scalability, and stability through architectural
+              improvements and production monitoring.
+            </p>
+            <div class="about-pills">
+              <div class="about-pill">
+                <span>🏗️</span>
+                <div>
+                  <div class="ap-n">Clean Architecture</div>
+                  <div class="ap-s">MVVM · Modular · DI · SOLID</div>
+                </div>
+              </div>
+              <div class="about-pill">
+                <span>⚡</span>
+                <div>
+                  <div class="ap-n">Swift Concurrency</div>
+                  <div class="ap-s">Actors · async/await · AsyncSequence</div>
+                </div>
+              </div>
+              <div class="about-pill">
+                <span>🔒</span>
+                <div>
+                  <div class="ap-n">Secure Development</div>
+                  <div class="ap-s">OAuth 2.0 · SSL Pinning · Keychain</div>
+                </div>
+              </div>
+              <div class="about-pill">
+                <span>📡</span>
+                <div>
+                  <div class="ap-n">Real-Time Systems</div>
+                  <div class="ap-s">WebRTC · VoIP · CallKit · BLE</div>
+                </div>
+              </div>
+              <div class="about-pill">
+                <span>🤖</span>
+                <div>
+                  <div class="ap-n">AI-Assisted Dev</div>
+                  <div class="ap-s">Cursor AI · Copilot · OpenAI Codex</div>
+                </div>
+              </div>
+              <div class="about-pill">
+                <span>⚛️</span>
+                <div>
+                  <div class="ap-n">Cross Platform</div>
+                  <div class="ap-s">React Native · Redux Toolkit</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="about-panel">
+            <div class="ap-header">
+              <div class="ap-avatar">RK</div>
+              <div>
+                <div class="ap-hname">Rakesh Kumar</div>
+                <div class="ap-htitle">Senior iOS Engineer · React Native</div>
+                <div class="ap-loc">📍 Indore, Madhya Pradesh, India</div>
+              </div>
+            </div>
+            <div class="ap-stats">
+              <div class="ap-stat">
+                <div class="ap-stat-n">9+</div>
+                <div class="ap-stat-l">Years Experience</div>
+              </div>
+              <div class="ap-stat">
+                <div class="ap-stat-n">7+</div>
+                <div class="ap-stat-l">Apps Shipped</div>
+              </div>
+              <div class="ap-stat">
+                <div class="ap-stat-n">5</div>
+                <div class="ap-stat-l">Companies</div>
+              </div>
+              <div class="ap-stat">
+                <div class="ap-stat-n">MCA</div>
+                <div class="ap-stat-l">Education</div>
+              </div>
+            </div>
+            <div class="ap-links">
+              <a class="ap-link" href="mailto:rakeshiosdev28@gmail.com">
+                <span class="ap-link-icon">✉️</span>
+                <div class="apl-info">
+                  <span>Email</span
+                  ><span class="apl-sub">rakeshiosdev28@gmail.com</span>
+                </div>
+                <span class="apl-go">↗</span>
+              </a>
+              <a
+                class="ap-link"
+                href="https://github.com/rakeshiosdev"
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="ap-link-icon">🐙</span>
+                <div class="apl-info">
+                  <span>GitHub</span
+                  ><span class="apl-sub">github.com/rakeshiosdev</span>
+                </div>
+                <span class="apl-go">↗</span>
+              </a>
+              <a
+                class="ap-link"
+                href="https://linkedin.com/in/rakesh-kumar-b64b6011b/"
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="ap-link-icon">💼</span>
+                <div class="apl-info">
+                  <span>LinkedIn</span
+                  ><span class="apl-sub"
+                    >linkedin.com/in/rakesh-kumar-b64b6011b</span
+                  >
+                </div>
+                <span class="apl-go">↗</span>
+              </a>
+              <a class="ap-link" href="tel:+919006465603">
+                <span class="ap-link-icon">📞</span>
+                <div class="apl-info">
+                  <span>Phone</span><span class="apl-sub">+91-9006465603</span>
+                </div>
+                <span class="apl-go">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="wrap">
+        <div class="skills-head">
+          <div>
+            <div class="label">Technical Skills</div>
+            <h2 class="heading">The full <span class="serif">stack</span></h2>
+          </div>
+          <p class="muted" style="max-width: 340px">
+            A deep, production-tested skill set refined across 9 years and 5
+            companies.
+          </p>
+        </div>
+        <div class="skills-cats">
+          <div>
+            <div class="scat-title">Languages</div>
+            <div class="skill-pills">
+              <div class="sp"><span class="sp-i">🦅</span>Swift</div>
+              <div class="sp"><span class="sp-i">⚙️</span>Objective-C</div>
+              <div class="sp tl"><span class="sp-i">🟦</span>TypeScript</div>
+              <div class="sp tl"><span class="sp-i">🟨</span>JavaScript</div>
+            </div>
+          </div>
+          <div>
+            <div class="scat-title">Frameworks &amp; UI</div>
+            <div class="skill-pills">
+              <div class="sp"><span class="sp-i">🎨</span>SwiftUI</div>
+              <div class="sp"><span class="sp-i">📐</span>UIKit</div>
+              <div class="sp"><span class="sp-i">🔗</span>Combine</div>
+              <div class="sp"><span class="sp-i">🗃️</span>Core Data</div>
+              <div class="sp"><span class="sp-i">💾</span>GRDB</div>
+              <div class="sp"><span class="sp-i">🌀</span>Realm</div>
+              <div class="sp tl"><span class="sp-i">⚛️</span>React Native</div>
+              <div class="sp tl"><span class="sp-i">🔴</span>Redux Toolkit</div>
+            </div>
+          </div>
+          <div>
+            <div class="scat-title">Architecture &amp; Patterns</div>
+            <div class="skill-pills">
+              <div class="sp">
+                <span class="sp-i">🏛️</span>Clean Architecture
+              </div>
+              <div class="sp"><span class="sp-i">🏗️</span>MVVM</div>
+              <div class="sp">
+                <span class="sp-i">🧩</span>Modular Architecture
+              </div>
+              <div class="sp">
+                <span class="sp-i">💉</span>Dependency Injection
+              </div>
+              <div class="sp"><span class="sp-i">🧱</span>SOLID Principles</div>
+            </div>
+          </div>
+          <div>
+            <div class="scat-title">Concurrency &amp; Performance</div>
+            <div class="skill-pills">
+              <div class="sp"><span class="sp-i">⚡</span>async/await</div>
+              <div class="sp"><span class="sp-i">🎭</span>Actors</div>
+              <div class="sp"><span class="sp-i">🔄</span>AsyncSequence</div>
+              <div class="sp">
+                <span class="sp-i">🧵</span>Grand Central Dispatch
+              </div>
+              <div class="sp"><span class="sp-i">📊</span>Instruments</div>
+              <div class="sp">
+                <span class="sp-i">🚀</span>Launch Time Optimisation
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="scat-title">Real-Time &amp; Networking</div>
+            <div class="skill-pills">
+              <div class="sp"><span class="sp-i">📡</span>WebRTC</div>
+              <div class="sp">
+                <span class="sp-i">📞</span>VoIP · CallKit · PushKit
+              </div>
+              <div class="sp">
+                <span class="sp-i">📶</span>BLE / CoreBluetooth
+              </div>
+              <div class="sp"><span class="sp-i">☎️</span>Twilio</div>
+              <div class="sp"><span class="sp-i">🌐</span>REST APIs</div>
+              <div class="sp"><span class="sp-i">◼</span>GraphQL</div>
+              <div class="sp">
+                <span class="sp-i">🔔</span>Push Notifications
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="scat-title">Security · CI/CD · Tooling</div>
+            <div class="skill-pills">
+              <div class="sp"><span class="sp-i">🔐</span>OAuth 2.0</div>
+              <div class="sp">
+                <span class="sp-i">🔑</span>Keychain · Biometrics
+              </div>
+              <div class="sp"><span class="sp-i">🛡️</span>SSL Pinning</div>
+              <div class="sp"><span class="sp-i">🔧</span>Fastlane</div>
+              <div class="sp"><span class="sp-i">⚙️</span>GitHub Actions</div>
+              <div class="sp"><span class="sp-i">🧪</span>XCTest · TDD</div>
+              <div class="sp"><span class="sp-i">📦</span>SPM · CocoaPods</div>
+              <div class="sp">
+                <span class="sp-i">🤖</span>Cursor AI · Copilot
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="wrap">
+        <div class="proj-head">
+          <div class="label">Selected Work</div>
+          <h2 class="heading">
+            Apps that <span class="serif">ship</span> to millions
+          </h2>
+        </div>
+        <div class="proj-grid">
+          <!-- Featured -->
+          <article class="proj-card feat">
+            <div class="proj-thumb pt-s">
+              <div class="te">🏀</div>
+              <span class="pchip">Sports Domain</span>
+              <span class="plive"
+                ><span class="ld"></span>Live on App Store</span
+              >
+            </div>
+            <div style="display: flex; flex-direction: column; flex: 1">
+              <div class="proj-body">
+                <div class="proj-title">LA Clippers + Intuit Dome</div>
+                <p class="proj-desc">
+                  Official NBA franchise app for the Los Angeles Clippers. The
+                  Intuit Dome app gives you seamless access to the venue and
+                  allows you to Zoom Thru so you never miss a moment of the
+                  action. By creating and completing your profile, you will
+                  unlock hassle-free access to parking garages and the venue as
+                  well as frictionless shopping across retail and concessions.
+                </p>
+                <div class="proj-techs">
+                  <span class="tech">Swift</span>
+                  <span class="tech">SwiftUI</span>
+                  <span class="tech">Combine</span>
+                  <span class="tech">MVVM</span>
+                  <span class="tech">Clean Architecture</span>
+                  <span class="tech">REST APIs & GraphQL</span>
+                  <span class="tech">Realm</span>
+                  <span class="tech">Server Driven UI</span>
+                </div>
+              </div>
+              <div class="proj-foot">
+                <span>Globant India · Sports</span
+                ><a
+                  href="https://apps.apple.com/us/app/la-clippers-intuit-dome/id6476565235"
+                  class="plink"
+                  >Details →</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <article class="proj-card">
+            <div class="proj-thumb pt-v">
+              <div class="te">🎙️</div>
+              <span class="pchip">VoIP · Communication</span>
+            </div>
+            <div class="proj-body">
+              <div class="proj-title">SpeakAme</div>
+              <p class="proj-desc">
+                Production communication platform with real-time chat, HD audio
+                calls, and video conferencing. Built with WebRTC, CallKit &amp;
+                PushKit for seamless native VoIP — real-time push &amp; GPS
+                tracking for concurrent users.
+              </p>
+              <div class="proj-techs">
+                <span class="tech">Swift</span>
+                <span class="tech">UIKit</span>
+                <span class="tech">WebRTC</span>
+                <span class="tech">CallKit</span>
+                <span class="tech">PushKit</span>
+                <span class="tech">QuickBlox</span>
+                <span class="tech">SQLite</span>
+              </div>
+            </div>
+            <div class="proj-foot">
+              <span>MMF Infotech · Real-time</span>
+              <!-- <a href="#" class="plink">Details →</a> -->
+            </div>
+          </article>
+
+          <article class="proj-card">
+            <div class="proj-thumb pt-w">
+              <div class="te">🏭</div>
+              <span class="pchip">Enterprise · BLE</span>
+            </div>
+            <div class="proj-body">
+              <div class="proj-title">Site Access Management</div>
+              <p class="proj-desc">
+                Enterprise access control for Melbourne Water Corporation. BLE
+                proximity-based gate access, real-time location, offline-first
+                data sync, and modular architecture for long-term
+                maintainability.
+              </p>
+              <div class="proj-techs">
+                <span class="tech">Swift</span>
+                <span class="tech">BLE</span
+                ><span class="tech">CoreBluetooth</span
+                ><span class="tech">Realm</span
+                ><span class="tech">React Native</span>
+              </div>
+            </div>
+            <div class="proj-foot">
+              <span>Diverse Lynx · Enterprise</span
+              ><a href="#" class="plink">Details →</a>
+            </div>
+          </article>
+
+          <article class="proj-card">
+            <div class="proj-thumb pt-e">
+              <div class="te">🏏</div>
+              <span class="pchip">Fantasy Sports</span>
+              <span class="plive"><span class="ld"></span>App Store</span>
+            </div>
+            <div class="proj-body">
+              <div class="proj-title">FSL11 — Fantasy Domain</div>
+              <p class="proj-desc">
+                High-concurrency fantasy sports platform with real-time score
+                updates, live leaderboards, secure payment gateway, and scalable
+                networking layer built for peak event loads.
+              </p>
+              <div class="proj-techs">
+                <span class="tech">Swift</span
+                ><span class="tech">REST APIs</span
+                ><span class="tech">Payment Gateway</span
+                ><span class="tech">GCD</span>
+              </div>
+            </div>
+            <div class="proj-foot">
+              <span>Mobiweb Technology</span
+              ><a href="#" class="plink">Details →</a>
+            </div>
+          </article>
+
+          <article class="proj-card">
+            <div class="proj-thumb pt-t">
+              <div class="te">🚲</div>
+              <span class="pchip">Transportation · Maps</span>
+            </div>
+            <div class="proj-body">
+              <div class="proj-title">Bike4Everything</div>
+              <p class="proj-desc">
+                Transportation app with real-time GPS tracking, Apple Maps &amp;
+                Google Maps integration, live driver-tracking, push
+                notifications for ride updates, and production stability for
+                concurrent users.
+              </p>
+              <div class="proj-techs">
+                <span class="tech">Swift</span><span class="tech">MapKit</span
+                ><span class="tech">Google Maps</span
+                ><span class="tech">Push Notifications</span>
+              </div>
+            </div>
+            <div class="proj-foot">
+              <span>MMF Infotech · Transport</span
+              ><a href="#" class="plink">Details →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="wrap">
+        <div class="exp-layout">
+          <div class="exp-sidebar">
+            <div class="label">Experience</div>
+            <h2 class="heading">
+              9 years of <span class="serif">impact</span>
+            </h2>
+            <p class="muted" style="margin-top: 14px">
+              From NBA franchises to US banks — delivering iOS at scale across
+              the most demanding verticals.
+            </p>
+            <div class="domain-list">
+              <div class="dom">
+                <span class="dom-e">🏅</span>
+                <div>
+                  <div class="dom-n">Sports</div>
+                  <div class="dom-s">NBA · Fantasy · Live Events</div>
+                </div>
+              </div>
+              <div class="dom">
+                <span class="dom-e">🏦</span>
+                <div>
+                  <div class="dom-n">Banking / BFSI</div>
+                  <div class="dom-s">US Bank · Secure Auth</div>
+                </div>
+              </div>
+              <div class="dom">
+                <span class="dom-e">📞</span>
+                <div>
+                  <div class="dom-n">VoIP / Communication</div>
+                  <div class="dom-s">WebRTC · CallKit · Twilio</div>
+                </div>
+              </div>
+              <div class="dom">
+                <span class="dom-e">🏭</span>
+                <div>
+                  <div class="dom-n">Enterprise</div>
+                  <div class="dom-s">Melbourne Water · BLE</div>
+                </div>
+              </div>
+              <div class="dom">
+                <span class="dom-e">🚲</span>
+                <div>
+                  <div class="dom-n">Transportation</div>
+                  <div class="dom-s">GPS Tracking · Maps</div>
+                </div>
+              </div>
+              <div class="dom">
+                <span class="dom-e">🏏</span>
+                <div>
+                  <div class="dom-n">Fantasy Gaming</div>
+                  <div class="dom-s">Payments · Real-time</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tl">
+            <div class="tl-item">
+              <div class="tl-left">
+                <div class="tl-dw">🏢</div>
+                <div class="tl-line"></div>
+              </div>
+              <div class="tl-right">
+                <div class="tl-period">June 2025 – Sept 2025</div>
+                <div class="tl-co">Tata Consultancy Services (TCS)</div>
+                <div class="tl-role">Assistant Consultant</div>
+                <div class="tl-loc">📍 Indore, India</div>
+                <ul class="tl-pts">
+                  <li>
+                    Contributed to architecture alignment and onboarding for US
+                    banking iOS application under secure enterprise standards.
+                  </li>
+                  <li>
+                    Collaborated on secure authentication workflows and BFSI
+                    domain compliance with cross-functional teams.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-left">
+                <div class="tl-dw">🌐</div>
+                <div class="tl-line"></div>
+              </div>
+              <div class="tl-right">
+                <div class="tl-period">July 2023 – May 2025</div>
+                <div class="tl-co">Globant India Pvt. Ltd</div>
+                <div class="tl-role">Senior Software Engineer (iOS)</div>
+                <div class="tl-loc">📍 Indore, India</div>
+                <ul class="tl-pts">
+                  <li>
+                    Architected modular iOS applications using Swift and SwiftUI
+                    with expertise in CoreData, UIKit, MVC, and MVVM.
+                  </li>
+                  <li>
+                    Designed reusable components using MVVM and Clean
+                    Architecture — reduced feature delivery time by 30%.
+                  </li>
+                  <li>
+                    Optimised performance through multi-threading, async/await,
+                    Actors, memory management, and Instruments.
+                  </li>
+                  <li>
+                    Shipped the LA Clippers app and other high-quality iOS
+                    applications to the App Store.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-left">
+                <div class="tl-dw">⚡</div>
+                <div class="tl-line"></div>
+              </div>
+              <div class="tl-right">
+                <div class="tl-period">Dec 2020 – June 2023</div>
+                <div class="tl-co">Diverse Lynx Pvt. Ltd (Client: TCS)</div>
+                <div class="tl-role">
+                  Senior Software Engineer (React Native / iOS)
+                </div>
+                <div class="tl-loc">📍 Bangalore, India</div>
+                <ul class="tl-pts">
+                  <li>
+                    Developed enterprise-grade iOS and React Native applications
+                    using Swift and Objective-C.
+                  </li>
+                  <li>
+                    Implemented secure authentication (Azure AD, OAuth 2.0), BLE
+                    communication, and Twilio-powered voice calling.
+                  </li>
+                  <li>
+                    Led modular architecture initiatives and reusable UI
+                    component libraries applying SOLID principles.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-left">
+                <div class="tl-dw">📱</div>
+                <div class="tl-line"></div>
+              </div>
+              <div class="tl-right">
+                <div class="tl-period">July 2019 – Apr 2020</div>
+                <div class="tl-co">Mobiweb Technology Pvt. Ltd</div>
+                <div class="tl-role">iOS Developer</div>
+                <div class="tl-loc">📍 Indore, India</div>
+                <ul class="tl-pts">
+                  <li>
+                    Developed FSL11 fantasy sports iOS app with real-time
+                    updates and high-concurrency networking.
+                  </li>
+                  <li>
+                    Designed scalable networking layer for live events;
+                    integrated secure payment gateways; managed App Store
+                    deployment.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-left"><div class="tl-dw">🔭</div></div>
+              <div class="tl-right">
+                <div class="tl-period">Jan 2016 – July 2019</div>
+                <div class="tl-co">MMF Infotech Pvt. Ltd</div>
+                <div class="tl-role">iOS Developer</div>
+                <div class="tl-loc">📍 Indore, India</div>
+                <ul class="tl-pts">
+                  <li>
+                    Built SpeakAme — VoIP &amp; real-time communication with
+                    WebRTC, CallKit, and PushKit.
+                  </li>
+                  <li>
+                    Developed Bike4Everything — GPS tracking, Apple Maps/Google
+                    Maps, live push notifications.
+                  </li>
+                  <li>
+                    Delivered production applications supporting concurrent
+                    users and real-time operations.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact-shell">
+          <div class="label" style="justify-content: center">Get in Touch</div>
+          <h2 class="heading">
+            Let's build something<br /><span class="serif">remarkable</span>
+          </h2>
+          <p class="muted">
+            Open to senior iOS engineer roles, React Native projects, technical
+            consulting, and remote opportunities. Based in Indore, India —
+            available immediately.
+          </p>
+          <div class="c-cards">
+            <a class="c-card" href="mailto:rakeshiosdev28@gmail.com">
+              <div class="c-icon">✉️</div>
+              <div class="c-lbl">Email</div>
+              <div class="c-val">rakeshiosdev28@gmail.com</div>
+            </a>
+            <a
+              class="c-card"
+              href="https://github.com/rakeshiosdev"
+              target="_blank"
+              rel="noopener"
+            >
+              <div class="c-icon">🐙</div>
+              <div class="c-lbl">GitHub</div>
+              <div class="c-val">github.com/rakeshiosdev</div>
+            </a>
+            <a
+              class="c-card"
+              href="https://linkedin.com/in/rakesh-kumar-b64b6011b/"
+              target="_blank"
+              rel="noopener"
+            >
+              <div class="c-icon">💼</div>
+              <div class="c-lbl">LinkedIn</div>
+              <div class="c-val">rakesh-kumar-b64b6011b</div>
+            </a>
+          </div>
+          <a class="c-cta" href="mailto:rakeshiosdev28@gmail.com"
+            >Send me a message →</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="wrap">
+        <div class="f-logo"><b>RK</b> · rakesh.dev</div>
+        <div class="f-copy">&copy; 2025 Rakesh Kumar. All rights reserved.</div>
+        <div class="f-links">
+          <a
+            href="https://github.com/rakeshiosdev"
+            target="_blank"
+            rel="noopener"
+            >GitHub</a
+          >
+          <a
+            href="https://linkedin.com/in/rakesh-kumar-b64b6011b/"
+            target="_blank"
+            rel="noopener"
+            >LinkedIn</a
+          >
+          <a href="tel:+919006465603">+91-9006465603</a>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
